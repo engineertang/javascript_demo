@@ -4,6 +4,7 @@
 
 console.log('// Default imports')
 
+// import Class
 import CaesarCipher from './modules/caesar.mjs'
 
 const cipher = new CaesarCipher(3)
