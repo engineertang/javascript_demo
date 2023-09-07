@@ -20,14 +20,18 @@ const getSelectedGenre = () => {
 const showBtns = () => {
     const btnDiv = document.getElementById('likeOrDislikeBtns');
     btnDiv.removeAttribute('hidden');
+    const moviePosterDiv = document.getElementById('movieInfo');
+    moviePosterDiv.removeAttribute('hidden');
 };
 
 // Clear the current movie from the screen
 const clearCurrentMovie = () => {
-    const moviePosterDiv = document.getElementById('moviePoster');
+    /*const moviePosterDiv = document.getElementById('movieInfo');
     const movieTextDiv = document.getElementById('movieText');
     moviePosterDiv.innerHTML = '';
-    movieTextDiv.innerHTML = '';
+    movieTextDiv.innerHTML = '';*/
+    const moviePosterDiv = document.getElementById('movieInfo');
+    moviePosterDiv.hidden = false;;
 }
 
 // After liking a movie, clears the current movie from the screen and gets another random movie
@@ -81,20 +85,26 @@ const getRandomMovie = (movies) => {
 // Uses the DOM to create HTML to display the movie
 const displayMovie = (movieInfo) => {
     const moviePosterDiv = document.getElementById('moviePoster');
+    const movieTitleDiv = document.getElementById('movieTitle');
     const movieTextDiv = document.getElementById('movieText');
     const likeBtn = document.getElementById('likeBtn');
     const dislikeBtn = document.getElementById('dislikeBtn');
   
     // Create HTML content containing movie info
-    const moviePoster = createMoviePoster(movieInfo.poster_path);
+    /*const moviePoster = createMoviePoster(movieInfo.poster_path);
     const titleHeader = createMovieTitle(movieInfo.title);
     const overviewText = createMovieOverview(movieInfo.overview);
   
     // Append title, poster, and overview to page
     moviePosterDiv.appendChild(moviePoster);
     movieTextDiv.appendChild(titleHeader);
-    movieTextDiv.appendChild(overviewText);
-  
+    movieTextDiv.appendChild(overviewText);*/
+
+    // modify poster, title and overview element value
+    moviePosterDiv.setAttribute('src', `https://image.tmdb.org/t/p/original/${movieInfo.poster_path}`);
+    movieTitleDiv.innerHTML = movieInfo.title;
+    movieTextDiv.innerHTML = movieInfo.overview;
+
     showBtns();
     likeBtn.onclick = likeMovie;
     dislikeBtn.onclick = dislikeMovie;
